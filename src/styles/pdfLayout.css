@@ -1,0 +1,1596 @@
+/* =========================================================================
+   FEGT TAROUDANT — GUIDE NUMÉRIQUE DE LA VIE DE L’ÉTUDIANT
+   SYSTÈME DE DESIGN UNIVERSITAIRE MODERNE & RESPONSIVE
+   ========================================================================= */
+
+@page {
+  size: 210mm 297mm;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Base Root Container */
+.pdf-viewer-root {
+  background: #F8FAFC;
+  color: #1E293B;
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  padding: 24px 0 60px 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================================
+   MODE WEB (PAR DÉFAUT SUR ÉCRAN) : RESPONSIVE, AÉRÉ, ULTRA-LISIBLE
+   ========================================================================= */
+.pdf-page {
+  width: 100%;
+  max-width: 1040px;
+  min-height: auto;
+  position: relative;
+  background: #FFFFFF;
+  margin: 0 auto 36px auto;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+}
+
+.pdf-page:hover {
+  box-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+}
+
+.pdf-inner {
+  padding: 2.75rem 3.25rem 2.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .pdf-viewer-root {
+    padding: 12px 12px 48px 12px;
+  }
+  .pdf-page {
+    border-radius: 1.25rem;
+    margin-bottom: 24px;
+  }
+  .pdf-inner {
+    padding: 1.5rem 1.25rem 1.75rem;
+  }
+}
+
+/* Typographie & Titres */
+.pdf-page h1,
+.pdf-page h2,
+.pdf-page h3,
+.pdf-page .pullquote,
+.pdf-page .cover-lead,
+.pdf-page .big-word,
+.pdf-page .contact-title,
+.pdf-page .closing {
+  font-family: 'Newsreader', 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.pdf-page p {
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: #334155;
+  margin: 0 0 12px;
+}
+
+.pdf-page h3 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: #03594E;
+  margin: 0 0 8px;
+}
+
+/* En-tête de section */
+.pdf-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 1rem;
+}
+
+.pdf-kicker {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FE8235;
+  font-weight: 700;
+}
+
+.pdf-title {
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  line-height: 1.15;
+  margin: 6px 0 0;
+  max-width: 720px;
+  color: #03594E;
+  font-weight: 600;
+}
+
+.pdf-pageno {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #FE8235;
+  font-weight: 700;
+  background: rgba(254, 130, 53, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(254, 130, 53, 0.2);
+}
+
+/* Pied de page institutionnel */
+.pdf-footer {
+  margin-top: 2rem;
+  border-top: 1px solid #E2E8F0;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #64748B;
+  font-size: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Distinct Axe Sections */
+.pdf-axe-block {
+  position: relative;
+  margin-bottom: 1.75rem;
+}
+
+.pdf-axe-block:last-child {
+  margin-bottom: 0;
+}
+
+.pdf-axe-divider {
+  border-top: 1px dashed #CBD5E1;
+  margin: 1.75rem 0;
+  position: relative;
+}
+
+.pdf-axe-header-distinct {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px solid #03594E;
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pdf-axe-header-distinct.rust {
+  border-bottom-color: #FE8235;
+}
+
+.pdf-axe-header-distinct.ochre {
+  border-bottom-color: #C8944E;
+}
+
+.pdf-axe-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #03594E;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+.pdf-axe-badge.rust {
+  background: #FE8235;
+}
+
+.pdf-axe-badge.ochre {
+  background: #C8944E;
+}
+
+.pdf-axe-title-distinct {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  color: #03594E;
+  line-height: 1.35;
+  margin: 0;
+  font-weight: 500;
+}
+
+.pdf-axe-title-distinct b {
+  font-weight: 700;
+  color: #024138;
+}
+
+/* Grilles & Cartes Responsive */
+.pdf-split,
+.pdf-compact-split,
+.pdf-feature-grid,
+.pdf-two-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .pdf-split,
+  .pdf-compact-split,
+  .pdf-feature-grid,
+  .pdf-two-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.pdf-compact-card,
+.pdf-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pdf-compact-card:hover,
+.pdf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -2px rgba(15, 23, 42, 0.06);
+}
+
+.pdf-compact-card.green,
+.pdf-card.green {
+  background: #03594E;
+  color: #FFFFFF;
+  border-color: #024138;
+}
+
+.pdf-compact-card.green h3,
+.pdf-compact-card.green h4,
+.pdf-card.green h3 {
+  color: #F8C62F;
+}
+
+.pdf-compact-card.green p,
+.pdf-card.green p {
+  color: #E2EBE8;
+}
+
+.pdf-compact-card.rust,
+.pdf-card.rust {
+  background: #FE8235;
+  color: #FFFFFF;
+  border-color: #E46B22;
+}
+
+.pdf-compact-card.rust h3,
+.pdf-compact-card.rust h4,
+.pdf-card.rust h3 {
+  color: #FFFFFF;
+}
+
+.pdf-compact-card.rust p,
+.pdf-card.rust p {
+  color: #FFF3EB;
+}
+
+.pdf-compact-card.ochre,
+.pdf-card.ochre {
+  background: #FDF8F0;
+  color: #1E293B;
+  border-color: #F0DFC8;
+  border-left: 4px solid #C8944E;
+}
+
+.pdf-compact-card.ochre h3,
+.pdf-compact-card.ochre h4 {
+  color: #925C15;
+}
+
+.pdf-compact-card.ochre p {
+  color: #475569;
+}
+
+.pdf-note {
+  border-left: 4px solid #F8C62F;
+  padding: 12px 18px;
+  background: #F0FDF4;
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-size: 14px;
+  color: #03594E;
+  margin-top: 1rem;
+  border: 1px solid #DCFCE7;
+  border-left-width: 4px;
+}
+
+/* =========================================================================
+   PAGE 01 — HERO COUVERTURE
+   ========================================================================= */
+.pdf-cover {
+  background: #03594E;
+  color: white;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 3.5rem;
+}
+
+@media (max-width: 768px) {
+  .pdf-cover {
+    min-height: 520px;
+    padding: 2rem 1.5rem;
+  }
+}
+
+.pdf-cover-photo {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: saturate(0.85);
+  transition: transform 0.6s ease;
+}
+
+.pdf-cover:hover .pdf-cover-photo {
+  transform: scale(1.02);
+}
+
+.pdf-cover-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(3, 89, 78, 0.98) 0%,
+    rgba(3, 89, 78, 0.92) 50%,
+    rgba(3, 89, 78, 0.45) 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .pdf-cover-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 89, 78, 0.95) 0%,
+      rgba(3, 89, 78, 0.92) 70%,
+      rgba(3, 89, 78, 0.6) 100%
+    );
+  }
+}
+
+.pdf-cover-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.pdf-cover-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #F8C62F;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.pdf-cover h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 1.25rem 0 1rem;
+  color: #FFFFFF;
+}
+
+.pdf-cover h1 i {
+  color: #F8C62F;
+  font-style: italic;
+}
+
+.pdf-cover-lead {
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  background: rgba(2, 44, 38, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(248, 198, 47, 0.4);
+}
+
+.pdf-cover-small {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  max-width: 520px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Slogan officiel FEGT ultra-lisible & haute clarté */
+.pdf-cover-slogan-pill {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  background: rgba(2, 44, 38, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(248, 198, 47, 0.5);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  padding: 0.65rem 1.25rem;
+  border-radius: 9999px;
+  margin: 1.25rem 0 1.25rem;
+  max-width: 100%;
+}
+
+.pdf-cover-slogan-item {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  display: inline-flex;
+  align-items: center;
+}
+
+.pdf-cover-slogan-sep {
+  color: #F8C62F;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(248, 198, 47, 0.8);
+  user-select: none;
+}
+
+/* Bloc institutionnel FEGT officiel ultra-clair */
+.pdf-cover-official-block {
+  background: linear-gradient(135deg, rgba(2, 44, 38, 0.92) 0%, rgba(3, 60, 52, 0.88) 100%);
+  border: 1px solid rgba(254, 130, 53, 0.45);
+  border-left: 5px solid #FE8235;
+  border-radius: 1rem;
+  padding: 1.1rem 1.4rem;
+  max-width: 580px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  margin-top: 0.75rem;
+}
+
+.pdf-cover-edition-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #F8C62F;
+  background: rgba(248, 198, 47, 0.15);
+  border: 1px solid rgba(248, 198, 47, 0.35);
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pdf-cover-edition-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #FE8235;
+  box-shadow: 0 0 8px #FE8235;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.pdf-cover-faculty-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.3;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  letter-spacing: -0.01em;
+}
+
+.pdf-cover-univ-details {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #E2E8F0;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pdf-cover-footer {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #E2E8F0;
+  font-size: 13px;
+}
+
+.pdf-cover-footer b {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  color: #F8C62F;
+}
+
+/* =========================================================================
+   PAGE 02 — MOT DE BIENVENUE
+   ========================================================================= */
+.pdf-pullquote {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: #03594E;
+  border-left: 4px solid #FE8235;
+  padding-left: 1rem;
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+
+.pdf-quote-photo {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E2E8F0;
+}
+
+.pdf-quote-photo img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.pdf-quote-photo span {
+  display: block;
+  background: #03594E;
+  color: #FFFFFF;
+  padding: 12px 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* =========================================================================
+   PHOTO CARDS
+   ========================================================================= */
+.pdf-photo-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  color: white;
+  min-height: 220px;
+  border: 1px solid #E2E8F0;
+}
+
+.pdf-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.78);
+  transition: transform 0.3s ease;
+}
+
+.pdf-photo-card:hover img {
+  transform: scale(1.03);
+}
+
+.pdf-photo-card div {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 1rem 0.5rem 0.25rem;
+}
+
+.pdf-photo-card b {
+  display: block;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: #FFFFFF;
+}
+
+.pdf-photo-card span {
+  font-size: 12px;
+  color: #F1F5F9;
+}
+
+.pdf-number-hero {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #FE8235;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-small-photo {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 1rem;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.pdf-caption {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+/* =========================================================================
+   PAGE 04 — FILIÈRES (PROGRAMMES)
+   ========================================================================= */
+.pdf-intro {
+  font-size: 1.15rem;
+  color: #03594E;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.pdf-program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+}
+
+.pdf-program {
+  padding: 1.5rem 1.25rem;
+  background: #03594E;
+  color: white;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 190px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pdf-program:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px -4px rgba(3, 89, 78, 0.3);
+}
+
+.pdf-program.rust {
+  background: #FE8235;
+}
+
+.pdf-program.rust:hover {
+  box-shadow: 0 8px 24px -4px rgba(254, 130, 53, 0.3);
+}
+
+.pdf-program.ochre {
+  background: #C8944E;
+  color: #FFFFFF;
+}
+
+.pdf-program.dark {
+  background: #1E293B;
+}
+
+.pdf-program span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.pdf-program h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: inherit;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.pdf-program p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.pdf-program b {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #FDE68A;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pdf-photo-ribbon {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.25fr;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+}
+
+@media (max-width: 768px) {
+  .pdf-photo-ribbon {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pdf-photo-ribbon img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.pdf-photo-ribbon div {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pdf-photo-ribbon b {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.15rem;
+  color: #03594E;
+  line-height: 1.3;
+}
+
+.pdf-photo-ribbon span {
+  font-size: 12px;
+  color: #FE8235;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.pdf-language-strip {
+  margin-top: 1.25rem;
+  padding: 12px 18px;
+  background: #F1F5F9;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  font-size: 13px;
+  border: 1px solid #E2E8F0;
+}
+
+.pdf-language-strip b {
+  color: #03594E;
+  font-weight: 700;
+}
+
+.pdf-language-strip span {
+  background: #FFFFFF;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid #CBD5E1;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* =========================================================================
+   PAGE 05 — TIMELINE DES PREMIERS PAS
+   ========================================================================= */
+.pdf-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.pdf-timeline div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #F8FAFC;
+  padding: 10px 16px;
+  border-radius: 0.75rem;
+  border: 1px solid #E2E8F0;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pdf-timeline div:hover {
+  transform: translateX(4px);
+  border-color: #FE8235;
+}
+
+.pdf-timeline b {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #FE8235;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  shrink: 0;
+}
+
+.pdf-timeline span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #1E293B;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =========================================================================
+   PAGE 06 — SERVICES NUMÉRIQUES
+   ========================================================================= */
+.pdf-service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.pdf-service-grid > div {
+  background: #F8FAFC;
+  padding: 14px 16px;
+  border-radius: 0.875rem;
+  border: 1px solid #E2E8F0;
+  border-top: 3px solid #03594E;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pdf-service-grid > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  border-top-color: #FE8235;
+}
+
+.pdf-service-grid span {
+  font-family: 'JetBrains Mono', monospace;
+  color: #FE8235;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pdf-service-grid h3 {
+  margin: 6px 0 4px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #03594E;
+}
+
+.pdf-service-grid p {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #64748B;
+  margin: 0;
+}
+
+/* =========================================================================
+   PAGE 07 — ACTION LIST (DÉMARCHES)
+   ========================================================================= */
+.pdf-action-list {
+  border-radius: 0.875rem;
+  padding: 14px 18px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-left: 4px solid #03594E;
+}
+
+.pdf-action-list ul {
+  margin: 10px 0 12px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.pdf-action-list li {
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+  color: #03594E;
+  transition: color 0.15s ease;
+}
+
+.pdf-action-list li:hover {
+  color: #FE8235;
+}
+
+/* =========================================================================
+   PAGE 08 — ACCESSIBILITÉ & INCLUSION
+   ========================================================================= */
+.pdf-access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.pdf-access-card {
+  background: #F8FAFC;
+  padding: 14px 18px;
+  border-radius: 0.875rem;
+  border: 1px solid #E2E8F0;
+  border-left: 4px solid #FE8235;
+}
+
+.pdf-access-card b {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #FE8235;
+}
+
+.pdf-access-card h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 4px 0 6px;
+}
+
+.pdf-help-band {
+  margin-top: 1.25rem;
+  background: #03594E;
+  color: white;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.875rem;
+}
+
+.pdf-help-band b {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.1rem;
+  color: #F8C62F;
+}
+
+.pdf-help-band p {
+  color: #E2EBE8;
+  margin: 6px 0 0;
+}
+
+/* =========================================================================
+   PAGE 09 — CLUBS & PROJETS
+   ========================================================================= */
+.pdf-club-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.pdf-club-grid div {
+  padding: 14px 16px;
+  background: #F8FAFC;
+  border-radius: 0.875rem;
+  border: 1px solid #E2E8F0;
+  border-bottom: 3px solid #FE8235;
+  transition: transform 0.2s ease;
+}
+
+.pdf-club-grid div:hover {
+  transform: translateY(-2px);
+}
+
+.pdf-club-grid b {
+  display: block;
+  color: #03594E;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.pdf-club-grid span {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #475569;
+}
+
+.pdf-proposal {
+  border-radius: 0.875rem;
+  padding: 16px 20px;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  transition: transform 0.2s ease;
+}
+
+.pdf-proposal:hover {
+  transform: translateY(-2px);
+}
+
+.pdf-proposal-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #92400E;
+  margin-bottom: 10px;
+}
+
+.pdf-proposal-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pdf-proposal-flow span {
+  background: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: #03594E;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pdf-proposal-flow i {
+  font-style: normal;
+  color: #D97706;
+  font-size: 14px;
+}
+
+/* =========================================================================
+   PAGE 10 — ÉVÉNEMENTS & TABLEAU
+   ========================================================================= */
+.pdf-event-table {
+  border-top: 2px solid #FE8235;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Selected Element 1 & 2 styles + Clean Banner */
+.pdf-photo-strip-clean {
+  display: block !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.pdf-action-learning-card {
+  background: linear-gradient(135deg, #03594E 0%, #024138 100%);
+  color: #FFFFFF;
+  padding: 1.25rem 1.75rem;
+  border-radius: 1rem;
+  border-left: 5px solid #F8C62F;
+  box-shadow: 0 4px 14px rgba(3, 89, 78, 0.15);
+}
+
+.pdf-action-learning-card b {
+  display: block;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.45rem;
+  color: #F8C62F;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+.pdf-action-learning-card span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  color: #E2E8F0;
+  line-height: 1.5;
+}
+
+/* =========================================================================
+   PAGE 15 CALENDAR — LES RENDEZ-VOUS DE L'ANNÉE (MATCHING USER IMAGE)
+   ========================================================================= */
+.pdf-calendar-container {
+  background: #FAF7F2;
+  border: 1px solid #EFE8DE;
+  border-radius: 1.25rem;
+  padding: 2rem 2.25rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.pdf-calendar-main-title {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 500;
+  color: #1A2730;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+
+.pdf-calendar-lead {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  color: #4A5568;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+  max-width: 680px;
+}
+
+.pdf-calendar-table {
+  border-top: 1px solid #D8CFC4;
+}
+
+.pdf-calendar-row {
+  display: grid;
+  grid-template-columns: 180px 240px 1fr;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.15rem 0.5rem;
+  border-bottom: 1px solid #EAE3D9;
+  transition: background-color 0.15s ease;
+}
+
+.pdf-calendar-row:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.pdf-calendar-date-col {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #6B7280;
+  line-height: 1.4;
+}
+
+.pdf-calendar-name-col {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #A94A35;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.pdf-calendar-desc-col {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.55;
+}
+
+/* Compact calendar for grouped pages */
+.pdf-calendar-table-compact {
+  border-top: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+}
+
+.pdf-calendar-row-compact {
+  display: grid;
+  grid-template-columns: 130px 170px 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.pdf-calendar-row-compact:last-child {
+  border-bottom: none;
+}
+
+.pdf-calendar-date-col-compact {
+  font-size: 10px;
+  color: #64748B;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.pdf-calendar-name-col-compact {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #A94A35;
+}
+
+.pdf-calendar-desc-col-compact {
+  font-size: 11px;
+  color: #334155;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .pdf-calendar-container {
+    padding: 1.25rem 1rem;
+  }
+  .pdf-calendar-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 0.9rem 0.25rem;
+  }
+  .pdf-calendar-date-col {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+  }
+  .pdf-calendar-name-col {
+    font-size: 1.15rem;
+  }
+  .pdf-calendar-row-compact {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    padding: 0.5rem;
+  }
+}
+
+.pdf-event-table > div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  transition: background 0.15s ease;
+}
+
+@media (max-width: 640px) {
+  .pdf-event-table > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+.pdf-event-table > div:hover {
+  background: #F8FAFC;
+}
+
+.pdf-event-table b {
+  color: #03594E;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.pdf-event-table span {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+/* =========================================================================
+   PAGE 12 — MOBILITÉ & NEWSLETTER
+   ========================================================================= */
+.pdf-mobility {
+  background: #03594E;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.pdf-mobility-title {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 2rem;
+  color: #F8C62F;
+  margin-bottom: 12px;
+}
+
+.pdf-mobility-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+}
+
+@media (max-width: 640px) {
+  .pdf-mobility-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pdf-mobility-list span {
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 13px;
+}
+
+.pdf-newsletter {
+  border: 2px solid #FE8235;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background: #FFFBF7;
+}
+
+.pdf-newsletter-label {
+  color: #FE8235;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.pdf-newsletter h3 {
+  font-size: 1.35rem;
+  margin: 8px 0;
+  color: #03594E;
+}
+
+.pdf-issues {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.pdf-issues span {
+  background: #FE8235;
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================================================
+   PAGE 13 — DROITS, DEVOIRS & FAQ
+   ========================================================================= */
+.pdf-rights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .pdf-rights {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pdf-right-box {
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+}
+
+.pdf-right-box.dark {
+  background: #03594E;
+  color: white;
+  border-color: #024138;
+}
+
+.pdf-right-box b {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  display: block;
+}
+
+.pdf-right-box p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 8px;
+  color: inherit;
+}
+
+.pdf-faq {
+  margin-top: 1.5rem;
+  background: #F8FAFC;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #E2E8F0;
+}
+
+.pdf-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+@media (max-width: 768px) {
+  .pdf-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================================
+   PAGE 14 — CONTACTS & CLÔTURE
+   ========================================================================= */
+.pdf-contact-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .pdf-contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pdf-contact-main {
+  background: #03594E;
+  color: white;
+  padding: 2rem;
+  border-radius: 1.25rem;
+}
+
+.pdf-contact-main h3 {
+  color: #F8C62F;
+  margin-top: 14px;
+  font-size: 1.15rem;
+}
+
+.pdf-contact-main p {
+  color: #E2EBE8;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.pdf-contact-main .url {
+  font-family: 'JetBrains Mono', monospace;
+  color: #F8C62F;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pdf-contact-title {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 3rem;
+  color: #F8C62F;
+  line-height: 1;
+}
+
+.pdf-contact-side {
+  background: #F8FAFC;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.25rem;
+  border: 1px solid #E2E8F0;
+}
+
+.pdf-contact-side p {
+  margin-top: 12px;
+  color: #03594E;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.pdf-closing {
+  margin-top: 2rem;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: #03594E;
+  line-height: 1.15;
+  text-align: center;
+  padding: 1.5rem 1rem 0;
+}
+
+.pdf-closing i {
+  color: #FE8235;
+  font-style: italic;
+}
+
+.pdf-closing span {
+  display: block;
+  margin-top: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #64748B;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* =========================================================================
+   MODE SIMULATION PLANCHES A4 (ÉCRAN DESKTOP)
+   ========================================================================= */
+.sheets-mode .pdf-page {
+  width: 210mm !important;
+  height: 297mm !important;
+  min-height: 297mm !important;
+  max-height: 297mm !important;
+  overflow: hidden !important;
+  border-radius: 4px !important;
+  margin: 0 auto 30px auto !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.sheets-mode .pdf-inner {
+  padding: 16mm 17mm 16mm !important;
+  height: 100% !important;
+}
+
+.sheets-mode .pdf-page p {
+  font-size: 10.5px !important;
+  line-height: 1.45 !important;
+  margin-bottom: 7px !important;
+}
+
+.sheets-mode .pdf-title {
+  font-size: 26px !important;
+}
+
+.sheets-mode .pdf-footer {
+  position: absolute !important;
+  left: 17mm !important;
+  right: 17mm !important;
+  bottom: 8mm !important;
+  margin-top: 0 !important;
+}
+
+/* =========================================================================
+   OPTIMISATIONS IMPRESSION / EXPORT PDF A4 OFFICIEL
+   ========================================================================= */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #1F2432 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .pdf-viewer-root {
+    background: #FFFFFF !important;
+    padding: 0 !important;
+  }
+
+  .pdf-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  .pdf-page:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  .pdf-inner {
+    padding: 15mm 16mm 14mm !important;
+    height: 100% !important;
+  }
+
+  .pdf-page p {
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .pdf-title {
+    font-size: 24px !important;
+  }
+
+  .pdf-footer {
+    position: absolute !important;
+    left: 16mm !important;
+    right: 16mm !important;
+    bottom: 8mm !important;
+  }
+}

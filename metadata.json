@@ -1,0 +1,8 @@
+{
+  "name": "Guide de la Vie de l'Étudiant - FEGT Taroudant",
+  "description": "Guide numérique et interactif officiel de la vie étudiante 2026-2027 de la Faculté d'Économie et de Gestion de Taroudant (Université Ibn Zohr).",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
