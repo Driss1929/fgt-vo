@@ -337,16 +337,16 @@ export default function App() {
     <div className="pdf-viewer-root">
       {/* Top Floating Control Bar (Hidden on print) */}
       <header className="sticky top-0 z-50 bg-[#03594E]/95 text-white shadow-lg shadow-[#012f27]/15 backdrop-blur-md border-b border-white/10 print:hidden">
-        <div className="px-3 sm:px-5 py-2.5">
+        <div className="px-3 sm:px-5 py-2.5 sm:py-3">
           <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2.5">
           {/* Logo & Document Title */}
-          <div className="flex min-w-0 items-center gap-2.5">
+          <div className="flex min-w-0 max-w-[calc(100%-3rem)] items-center gap-2.5">
             <FEGTOfficialLogo variant="boxed" size="sm" className="!px-2 !py-1 !rounded-lg shrink-0" />
             <div className="flex items-center gap-2">
-              <span className="font-serif font-bold text-base sm:text-lg tracking-wide text-white drop-shadow-sm">
+              <span className="font-serif font-bold text-sm sm:text-lg tracking-wide text-white drop-shadow-sm truncate">
                 FEGT · Guide de la Vie de l’Étudiant
               </span>
-              <span className="text-[10px] sm:text-[11px] font-mono font-bold bg-[#F8C62F]/20 text-[#F8C62F] px-2 py-0.5 rounded-full border border-[#F8C62F]/40 shadow-xs">
+              <span className="hidden sm:inline-flex shrink-0 text-[10px] sm:text-[11px] font-mono font-bold bg-[#F8C62F]/20 text-[#F8C62F] px-2 py-0.5 rounded-full border border-[#F8C62F]/40 shadow-xs">
                 Édition 2026–2027
               </span>
             </div>
@@ -360,7 +360,7 @@ export default function App() {
           </div>
 
           {/* View mode & Page Controls */}
-          <div className="flex items-center gap-2 bg-[#024138] px-2 py-1 rounded-xl text-xs">
+          <div className="order-3 flex w-full items-center justify-between gap-2 rounded-xl bg-[#024138] px-2 py-1.5 text-xs sm:order-none sm:w-auto sm:justify-start">
             <div className="flex bg-black/20 p-0.5 rounded-lg">
               <button
                 onClick={() => setViewMode('all')}
@@ -444,7 +444,7 @@ export default function App() {
           </div>
 
           {/* Actions: Accès Rapide (Quick Jump), Sommaire, Recherche, Plein écran */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <QuickJumpDropdown
               currentPage={currentPage}
               totalPages={totalPages}

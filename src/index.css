@@ -68,3 +68,46 @@
   aspect-ratio: 210 / 297;
   transition: transform 0.2s ease;
 }
+
+/* Keep the reading canvas comfortable on narrow screens without shrinking the document typography. */
+.pdf-viewer-root {
+  min-width: 0;
+  overflow-x: hidden;
+  background: #f4f7f5;
+}
+
+@media (max-width: 640px) {
+  .pdf-viewer-root header {
+    padding-top: max(0.6rem, env(safe-area-inset-top));
+  }
+
+  .pdf-viewer-root header button,
+  .pdf-viewer-root header select {
+    min-height: 2.25rem;
+  }
+
+  .pdf-viewer-root main {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .a4-sheet {
+    width: min(100vw - 1rem, 210mm) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 210 / 297;
+    border-radius: 0.75rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
