@@ -99,6 +99,112 @@
   }
 }
 
+/* App shell redesign: calm editorial workspace with mobile-first controls. */
+.app-shell-header {
+  background: linear-gradient(135deg, #073b36 0%, #075f53 58%, #0b7867 100%) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.app-shell-header > div:first-child {
+  padding: 0.7rem clamp(0.75rem, 3vw, 1.5rem) 0.8rem;
+}
+
+.app-shell-header .app-shell-brand {
+  letter-spacing: -0.02em;
+}
+
+.app-main {
+  min-height: calc(100dvh - 4.5rem);
+  background: radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.92), transparent 35%), #edf3f0;
+  padding: clamp(0.75rem, 2vw, 1.5rem) 0 4rem;
+}
+
+.app-shell-header button,
+.app-shell-header select {
+  min-height: 2.35rem;
+}
+
+@media (max-width: 640px) {
+  .app-shell-header {
+    position: sticky;
+  }
+
+  .app-shell-header > div:first-child {
+    padding: 0.6rem 0.65rem 0.7rem;
+  }
+
+  .app-shell-header > div:first-child > div:first-child {
+    gap: 0.55rem;
+  }
+
+  .app-shell-header .font-serif {
+    font-size: 0.8rem;
+    line-height: 1.15;
+    max-width: 9.4rem;
+  }
+
+  .app-shell-header .order-3 {
+    order: 3;
+    margin-top: 0.15rem;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .app-shell-header .order-3::-webkit-scrollbar {
+    display: none;
+  }
+
+  .app-shell-header .order-3 > div:first-child {
+    flex: 1;
+  }
+
+  .app-shell-header .order-3 button {
+    flex: 1;
+    white-space: nowrap;
+    padding-inline: 0.65rem;
+  }
+
+  .app-shell-header .order-3 select {
+    max-width: 4.1rem;
+  }
+
+  .app-shell-header > div:first-child > div:last-child {
+    gap: 0.25rem;
+  }
+
+  .app-shell-header > div:first-child > div:last-child button {
+    min-width: 2.4rem;
+    padding: 0.5rem;
+    justify-content: center;
+    border-radius: 0.7rem;
+  }
+
+  .app-shell-header > div:first-child > div:last-child button span {
+    display: none;
+  }
+
+  .app-shell-header > div:first-child > div:last-child button:last-child {
+    display: none;
+  }
+
+  .app-main {
+    padding-top: 0.5rem;
+    padding-bottom: max(4.5rem, env(safe-area-inset-bottom));
+  }
+
+  .a4-sheet {
+    box-shadow: 0 8px 24px rgba(24, 54, 47, 0.12) !important;
+    border: 1px solid rgba(7, 95, 83, 0.1) !important;
+  }
+}
+
+@media (min-width: 641px) {
+  .app-main {
+    padding-inline: clamp(0.75rem, 3vw, 3rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
