@@ -300,6 +300,9 @@ async function startServer() {
         middlewareMode: true,
         host: '0.0.0.0',
         port: PORT,
+        // The preview proxy does not expose Vite's HMR WebSocket endpoint.
+        // Disable the client socket to prevent repeated "closed without opened" errors.
+        hmr: false,
       },
       appType: 'spa',
     });
